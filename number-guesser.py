@@ -12,40 +12,44 @@ print(
 )
 
 
-topRange = input("Enter the top of the range: ")
+while True:
+    topRange = input("Enter the top of the range: ")
 
-if topRange.isdigit():
-    topRange = int(topRange)
+    if topRange.isdigit():
+        topRange = int(topRange)
 
-    if topRange <= 0:
-        print("Please enter a number greater than 0")
-        quit()
+        if topRange <= 0:
+            print("\nPlease enter a number greater than 0")
+            continue
+        else:
+            break
 
-else:
-    print("Please enter a number")
-    quit()
+    else:
+        print("\nPlease enter a number")
+        continue
+
 
 randomNumber = random.randint(0, topRange)
 guesses = 0
 
 while guesses < 3:
     guesses += 1
-    userGuess = input("Make a guess: ")
+    userGuess = input("\nMake a guess: ")
     if userGuess.isdigit():
         userGuess = int(userGuess)
     else:
-        print("Please enter a number next time.")
+        print("\nPlease enter a number next time.")
         continue
 
     if userGuess == randomNumber:
-        print(f"Congratulations! You guessed the correct number in {guesses} guesses!")
+        print(f"\nCongratulations! You guessed the correct number in {guesses} guesses!")
         break
     elif userGuess > randomNumber:
-        print("Guess lower")
+        print("\nGuess lower")
     else:
-        print("Guess higher")
+        print("\nGuess higher")
 
 if guesses >= 3:
-    print(f"Sorry! You did not guess the correct number. The number was {randomNumber}")
+    print(f"\nSorry! You did not guess the correct number within 3 chances. The number was {randomNumber}")
 
-print("Thanks for playing!")
+print("\nThanks for playing!")
