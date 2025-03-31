@@ -15,23 +15,22 @@ def loadKey():
     file.close()
     return key
 
-masterPwd = input("Enter your master password: ")
 
-key =loadKey() +masterPwd.encode()
+key =loadKey()
 fer=Fernet(key)
 
 def view():
     with open("passwords.txt", "r") as f:
         for line in f.readlines():
             data = line.rstrip()
-            user, pwd = data.split("|")
-            print(f"User: {user} | Password: {pwd}")
+            user, password = data.split("|")
+            print(f"User: {user} | Password: {fer.decrypt(password.encode()).decode()}")
 
 def add():
     with open("passwords.txt", "a") as f:
-        user = input("Enter username: ")
+        userName = input("Enter username: ")
         pwd = input("Enter password: ")
-        f.write(user + "|" + pwd + "\n")
+        f.write(userName + "|" + fer.encrypt(pwd.encode()).decode() + "\n")
 
 
 while True:
