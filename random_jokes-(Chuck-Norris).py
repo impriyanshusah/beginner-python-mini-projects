@@ -12,5 +12,8 @@ def fetch_joke():
         raise Exception("Failed to fetch joke from API")
     
 if __name__ == "__main__":
-    joke = fetch_joke()
-    print(joke)
+    try:
+        joke = fetch_joke()
+        print("Joke:", joke)
+    except Exception as e:
+        print(str(e))
